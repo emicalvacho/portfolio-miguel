@@ -121,38 +121,55 @@ Los archivos compilados se generarán en la carpeta `dist/`
 
 ### Despliegue en GitHub Pages
 
-1. **Actualizar la configuración de Vite**
+#### Configurar Variables de Entorno
 
-El archivo `vite.config.ts` ya está configurado con la ruta base `/portfolio-miguel/`. Si tu repositorio tiene un nombre diferente, actualiza esta ruta.
+**IMPORTANTE**: Antes de desplegar, debes configurar las variables de entorno en GitHub Secrets.
 
-2. **Instalar gh-pages (opcional pero recomendado)**
+1. **Crear Secrets en GitHub**:
+   - Ve a tu repositorio en GitHub
+   - Ve a **"Settings"** → **"Secrets and variables"** → **"Actions"**
+   - Crea los siguientes secrets:
+     - `VITE_EMAILJS_SERVICE_ID`
+     - `VITE_EMAILJS_TEMPLATE_ID`
+     - `VITE_EMAILJS_PUBLIC_KEY`
+     - `VITE_GITHUB_USERNAME`
 
-```bash
-npm install --save-dev gh-pages
-```
+2. **Configurar GitHub Pages**:
+   - Ve a **"Settings"** → **"Pages"**
+   - En **"Source"**, selecciona **"GitHub Actions"**
+   - Guarda los cambios
 
-3. **Agregar script de despliegue en `package.json`**
+3. **Desplegar automáticamente**:
+   - El workflow de GitHub Actions ya está configurado (`.github/workflows/deploy.yml`)
+   - Haz commit y push a la rama `main`:
+     ```bash
+     git add .
+     git commit -m "Deploy to GitHub Pages"
+     git push origin main
+     ```
+   - GitHub Actions ejecutará automáticamente el build y deploy
+   - Tu sitio estará disponible en `https://tu-usuario.github.io/portfolio-miguel/`
 
-```json
-{
-  "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
-  }
-}
-```
+#### Despliegue Manual (Alternativa)
 
-4. **Desplegar**
+Si prefieres desplegar manualmente:
 
-```bash
-npm run deploy
-```
+1. **Crear archivo `.env.production`** (localmente, no se sube a GitHub):
+   ```bash
+   VITE_EMAILJS_SERVICE_ID=tu_service_id
+   VITE_EMAILJS_TEMPLATE_ID=tu_template_id
+   VITE_EMAILJS_PUBLIC_KEY=tu_public_key
+   VITE_GITHUB_USERNAME=tu-usuario
+   ```
 
-5. **Configurar GitHub Pages**
+2. **Compilar y desplegar**:
+   ```bash
+   npm run build
+   npm install -g gh-pages
+   gh-pages -d dist
+   ```
 
-- Ve a la configuración de tu repositorio en GitHub
-- En la sección "Pages", selecciona la rama `gh-pages` como fuente
-- Tu sitio estará disponible en `https://tu-usuario.github.io/portfolio-miguel/`
+**Nota**: Para más detalles, consulta `DEPLOY_GITHUB_PAGES.md`
 
 ### Despliegue en Netlify
 
