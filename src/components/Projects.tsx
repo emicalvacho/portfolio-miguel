@@ -51,7 +51,7 @@ const Projects = () => {
    * Obtiene el ícono correspondiente al lenguaje del proyecto
    */
   const getLanguageIcon = (language: string) => {
-    const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+    const iconMap: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement> & { className?: string }>> = {
       JavaScript: SiJavascript,
       TypeScript: SiTypescript,
       Java: FaJava,

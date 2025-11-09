@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
+import pixelMiguelImage from '../assets/pixel-miguel.png'
 
 /**
  * Componente Hero
@@ -56,8 +57,8 @@ const Hero = () => {
             className="mb-8 flex justify-center"
           >
             <div className="relative">
-              <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white text-4xl md:text-5xl font-bold shadow-lg">
-                  <img src="/src/assets/pixel-miguel.png" alt="Miguel José Zambrano López" className="w-32 h-32 md:w-40 md:h-40 rounded-full" />
+              <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white text-4xl md:text-5xl font-bold shadow-lg overflow-hidden">
+                  <img src={pixelMiguelImage} alt="Miguel José Zambrano López" className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover" />
               </div>
               <motion.div
                 className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-white dark:border-gray-900"

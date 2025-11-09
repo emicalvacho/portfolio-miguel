@@ -111,7 +111,7 @@ const About = () => {
             </h3>
             
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-              {technologies.map((tech, index) => {
+              {technologies.map((tech) => {
                 const Icon = tech.icon
                 return (
                   <motion.div
